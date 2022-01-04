@@ -33,7 +33,8 @@ RUN apt-get update
 RUN apt-get -y install \
   openssh-client \
   rsync \
-  gcc-arm-linux-gnueabihf
+  gcc-arm-linux-gnueabihf \
+  sudo
 
 RUN rustup target add armv7-unknown-linux-gnueabihf
 
@@ -52,9 +53,6 @@ WORKDIR /ws
 
 COPY . .
 
-RUN echo 'Host rpi \n\
-  Hostname 192.168.100.2 \n\
-  User pi \n\
-  IdentityFile ~/.ssh/rpi' > ~/.ssh/config
+RUN cat utils/ssh_config > ~/.ssh/config
 
 CMD ["/ws/deploy.sh"]

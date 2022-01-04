@@ -1,0 +1,11 @@
+[Unit]
+Description=Hello RPI with docker and rust
+After=multi-user.target
+
+[Service]
+ExecStart=/home/pi/ws/hello-rpi-docker
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
